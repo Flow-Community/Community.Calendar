@@ -13,6 +13,7 @@ namespace Community\Calendar\Domain\Model\Component;
 
 use Doctrine\ORM\Mapping as ORM;
 use TYPO3\Flow\Annotations as Flow;
+use Community\Calendar\Annotations as Calendar;
 
 /**
  * This class holds together the component types which actually can "occur"
@@ -23,26 +24,26 @@ use TYPO3\Flow\Annotations as Flow;
 abstract class AbstractOccurrenctComponent extends AbstractMainComponent {
 
 	/**
-	 * 3.8.1.3
-	 * Property Name: CLASS
-	 * Purpose: This property defines the access classification for a
+	 * This property defines the access classification for a
 	 *    calendar component.
 	 *
+	 * @see http://tools.ietf.org/html/rfc5545#section-3.8.1.3
+	 * @Calendar\PropertyName("CLASS")
 	 * @var string
 	 */
 	protected $classification;
 
 	/**
-	 * 3.8.7.1
-	 * Property Name: CREATED
 	 *
-	 * Purpose: This property specifies the date and time that the calendar
+	 * This property specifies the date and time that the calendar
 	 *    information was created by the calendar user agent in the calendar
 	 *    store.
 	 *
 	 *       Note: This is analogous to the creation date and time for a
 	 *       file in the file system.
 	 *
+	 * @see http://tools.ietf.org/html/rfc5545#section-3.8.7.1
+	 * @Calendar\PropertyName("CREATED")
 	 * @var \DateTime
 	 */
 	protected $dateTimeCreated;

@@ -13,6 +13,7 @@ namespace Community\Calendar\Domain\Model\Component;
 
 use Doctrine\ORM\Mapping as ORM;
 use TYPO3\Flow\Annotations as Flow;
+use Community\Calendar\Annotations as Calendar;
 
 /**
  * This class builds the base of the four "Main components" which are
@@ -27,9 +28,7 @@ use TYPO3\Flow\Annotations as Flow;
 abstract class AbstractMainComponent {
 
 	/**
-	 * 3.8.7.2
-	 * Property Name: DTSTAMP
-	 * Purpose: In the case of an iCalendar object that specifies a
+	 * In the case of an iCalendar object that specifies a
 	 *   "METHOD" property, this property specifies the date and time that
 	 *   the instance of the iCalendar object was created.  In the case of
 	 *   an iCalendar object that doesn't specify a "METHOD" property, this
@@ -37,112 +36,114 @@ abstract class AbstractMainComponent {
 	 *   associated with the calendar component was last revised in the
 	 *   calendar store.
 	 *
+	 * @see http://tools.ietf.org/html/rfc5545#section-3.8.7.2
+	 * @Calendar\PropertyName("DTSTAMP")
 	 * @var \DateTime
 	 */
 	protected $dateTimeStamp;
 
 	/**
-	 * 3.8.4.7
-	 * Property Name: UID
-	 * Purpose: This property defines the persistent, globally unique
+	 * This property defines the persistent, globally unique
 	 *    identifier for the calendar component.
 	 *
+	 * @see http://tools.ietf.org/html/rfc5545#section-3.8.4.7
+	 * @Calendar\PropertyName("UID")
 	 * @var string
 	 */
 	protected $uniqueIdentifier;
 
 	/**
-	 * 3.8.2.4
-	 * Property Name: DTSTART
-	 * Purpose: This property specifies when the calendar component begins.
+	 * This property specifies when the calendar component begins.
 	 *
+	 * @see http://tools.ietf.org/html/rfc5545#section-3.8.2.4
+	 * @Calendar\PropertyName("DTSTART")
 	 * @var \DateTime
 	 */
 	protected $dateTimeStart;
 
 	/**
-	 * 3.8.4.3
-	 * Property Name: ORGANIZER
-	 * Purpose: This property defines the organizer for a calendar
+	 * This property defines the organizer for a calendar
 	 *    component.
 	 * Value Type: CAL-ADDRESS
 	 *
+	 * @see http://tools.ietf.org/html/rfc5545#section-3.8.4.3
+	 * @Calendar\PropertyName("ORGANIZER")
 	 * @var string
 	 */
 	protected $organizer;
 
 	/**
-	 * 3.8.4.6
-	 * Property Name: URL
-	 * Purpose: This property defines a Uniform Resource Locator (URL)
+	 * This property defines a Uniform Resource Locator (URL)
 	 *    associated with the iCalendar object.
 	 *
+	 * @see http://tools.ietf.org/html/rfc5545#section-3.8.4.6
+	 * @Calendar\PropertyName("URL")
 	 * @var string
 	 */
 	protected $uniformResourceLocator;
 
 	/**
-	 * 3.8.4.1
-	 * Property Name: ATTENDEE
-	 * Purpose: This property defines an "Attendee" within a calendar
+	 * This property defines an "Attendee" within a calendar
 	 *    component.
 	 * Value Type: CAL-ADDRESS
 	 *
+	 * @see http://tools.ietf.org/html/rfc5545#section-3.8.4.1
+	 * @Calendar\PropertyName("ATTENDEE")
 	 * @var string
 	 */
 	protected $attendee;
 
 	/**
-	 * 3.8.1.4
-	 * Property Name: COMMENT
-	 * Purpose: This property specifies non-processing information intended
+	 * This property specifies non-processing information intended
 	 *    to provide a comment to the calendar user.
 	 *
+	 * @see http://tools.ietf.org/html/rfc5545#section-3.8.1.4
+	 * @Calendar\PropertyName("COMMENT")
 	 * @var string
-	 * @ORM\ColumnType("TEXT")
+	 * @ORM\Column(type="text")
 	 */
 	protected $comment;
 
 	/**
-	 * 3.8.4.2
-	 * Property Name: CONTACT
-	 * Purpose: This property is used to represent contact information or
+	 * This property is used to represent contact information or
 	 *    alternately a reference to contact information associated with the
 	 *    calendar component.
 	 *
+	 * @see http://tools.ietf.org/html/rfc5545#section-3.8.4.2
+	 * @Calendar\PropertyName("CONTACT")
 	 * @var string
 	 */
 	protected $contact;
 
 	/**
-	 * 3.8.8.3
-	 * Property Name: REQUEST-STATUS
-	 * Purpose: This property defines the status code returned for a
+	 * This property defines the status code returned for a
 	 *    scheduling request.
 	 *
+	 * @see http://tools.ietf.org/html/rfc5545#section-3.8.8.3
+	 * @Calendar\PropertyName("REQUEST-STATUS")
 	 * @var string
 	 */
 	protected $requestStatus;
 
 	/**
-	 * 3.8.8.2
 	 * Property Name: Any property name with a "X-" prefix
-	 * Purpose: This class of property provides a framework for defining
+	 * This class of property provides a framework for defining
 	 *    non-standard properties.
 	 * Value Type: The default value type is TEXT.  The value type can be
 	 *    set to any value type.
 	 *
-	 * @var \Doctrine\Common\Collections\Collection
+	 * @see http://tools.ietf.org/html/rfc5545#section-3.8.8.2
+	 * @var \Doctrine\Common\Collections\Collection<\Community\Calendar\Domain\Model\Property\NonStandardProperty>
 	 */
 	protected $nonStandardProperties;
 
 	/**
-	 * 3.8.8.1
 	 * Property Name: An IANA-registered property name
 	 * Value Type: The default value type is TEXT.  The value type can be
 	 *    set to any value type.
 	 *
-	 * @var \Doctrine\Common\Collections\Collection
+	 * @see http://tools.ietf.org/html/rfc5545#section-3.8.8.1
+	 * @var \Doctrine\Common\Collections\Collection<\Community\Calendar\Domain\Model\Property\IanaProperty>
 	 */
 	protected $ianaProperties;
 }
